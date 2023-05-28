@@ -59,6 +59,6 @@ try:
     # Start the ngrok tunnel
     ngrok_tunnel()
 except (OSError, asyncssh.Error) as exc:
-    sys.exit('[+] Error: ' + str(exc))
+    sys.exit(f'[+] Error: {str(exc)}')
 
 loop.run_forever()

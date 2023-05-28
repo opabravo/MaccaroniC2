@@ -42,7 +42,7 @@ def main():
     args = parser.parse_args()
     command = args.command
     proxy = args.proxy
-    
+
     # Specify your ngrok API key
     api_key = "INSERT_YOUR_API_KEY"
 
@@ -54,10 +54,10 @@ def main():
         "Authorization": f"Bearer {api_key}",
         "Ngrok-Version": "2"
     }
-    
+
     # Define global variables
     global ngrok_host, ngrok_port
-    
+
     try:
         # Send the GET request using the same proxy if provided
         proxies = {'http': proxy, 'https': proxy, 'socks5':proxy} if proxy else None
@@ -80,7 +80,7 @@ def main():
 
         asyncio.get_event_loop().run_until_complete(run_client(command, proxy))
     except (OSError, asyncssh.Error) as exc:
-        sys.exit('[!] SSH connection failed: ' + str(exc))
+        sys.exit(f'[!] SSH connection failed: {str(exc)}')
 
 if __name__ == '__main__':
     main()
